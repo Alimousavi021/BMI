@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/output.css">
+</head>
+
+<body>
+    <main class="h-[100vh] w-full bg-[#ce4242] flex justify-center items-center">
+        <div class="w-[500px] h-[400px] bg-[#252238]   shadow-[0_0_20px_0_black] ">
+            <div id="bg" class="w-full h-[125px] bg-[#50c150] flex justify-center items-center flex-wrap">
+                <h1 id="result" class="w-full flex justify-center text-white text-[50px]">23.6 kg/m*2</h1>
+                <h3 id="measure" class="w-full flex justify-center text-white text-[16px] uppercase">normal</h3>
+            </div>
+            <div class="w-full h-[275px] bg-inherit">
+                <div class="w-full h-[75px]  flex justify-center flex-wrap">
+                    <h2 class="w-full flex justify-center items-center text-[#3d3d63] uppercase text-2xl pt-3">what's
+                        your bmi ?</h2>
+                    <div class="w-[85%] h-[2px] bg-[#ce4242] rounded-[10px] flex justify-center"></div>
+                </div>
+                <div class="w-full h-[70px] flex items-center">
+                    <input id="height" type="range" min="100" max="250" value="184"
+                        class="range accent-[#ce4242] w-[70%] h-[4px] ml-2  ">
+                    <span id="span1" class="w-[25%] text-[#ce4242] text-3xl pb-3 pl-4">184 cm</span>
+                </div>
+                <div class="w-full h-[70px] flex items-center">
+                    <input id="weight" type="range" min="0" max="250" value="80"
+                        class="range accent-[#ce4242] w-[70%] h-[4px] ml-2  ">
+                    <span id="span2" class="w-[25%] text-[#ce4242] text-3xl pb-3 pl-4">80 kg</span>
+                </div>
+
+                <div class="w-full h-[60px] flex justify-center items-center duration-400">
+                    <button onclick="Calculate()"
+                        class="w-[150px] h-[50px] flex justify-center items-center duration-400 rounded-[20px] bg-[#ce4242] text-2xl text-[#252238] hover:text-white mb-2">Calculate</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    <script>
+        let span1 = document.getElementById('span1')
+        let span2 = document.getElementById('span2')
+        let result = document.getElementById('result')
+        let measure = document.getElementById('measure')
+        let bg = document.getElementById('bg')
+
+        height.addEventListener('input', () => {
+            span1.innerHTML = height.value + 'cm'
+        })
+        weight.addEventListener('input', () => {
+            span2.innerHTML = weight.value + 'kg'
+        })
+
+        function Calculate() {
+            let height = document.getElementById('height')
+            let weight = document.getElementById('weight')
+            height = (height.value) / 100
+            height = height * height
+            bmi = (weight.value) / (height)
+            bmi = bmi.toFixed(1);
+            result.innerHTML = bmi + '' + 'kg/m*2'
+
+            if (bmi <= 18.4) {
+                measure.innerHTML = 'Underweight'
+                bg.style.backgroundColor = '#28283e'
+            } else if (bmi >= 18.5 && bmi <= 24.9) {
+                measure.innerHTML = 'Normal'
+                bg.style.backgroundColor = '#50c150'
+            } else if (bmi >= 25 && bmi <= 29.9) {
+                measure.innerHTML = 'Overweight'
+                bg.style.backgroundColor = '#ce4242'
+            } else if (bmi >= 30) {
+                measure.innerHTML = 'Obese'
+                bg.style.backgroundColor = 'red'
+            }
+        }
+
+    </script>
+</body>
+
+</html>
